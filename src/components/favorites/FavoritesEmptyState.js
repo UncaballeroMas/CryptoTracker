@@ -1,6 +1,5 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import theme from '../../res/theme';
 
 export const FavoritesEmptyState = () => {
   return (

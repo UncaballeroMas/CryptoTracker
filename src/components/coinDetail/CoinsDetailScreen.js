@@ -7,12 +7,12 @@ import {
   SectionList,
   FlatList,
   Pressable,
+  Alert,
 } from 'react-native';
 import Http from '../../libs/http';
 import theme from '../../res/theme';
 import CoinDetailScreen from './CoinMarketDetail';
 import Storage from '../../libs/storage';
-import AsyncStorage from '@react-native-community/async-storage';
 
 class CoinsDetailScreen extends Component {
   state = {
@@ -30,31 +30,44 @@ class CoinsDetailScreen extends Component {
   };
 
   addFavorite = async () => {
-    const coin = JSON.stringify(this.state.coin);
-    const key = `favorite-${this.state.coin.id}`;
-    console.log('key', key);
+    {
+      const coin = JSON.stringify(this.state.coin);
+      const key = `favorite-${this.state.coin.id}`;
 
-    const stored = await Storage.instance.store(key, coin);
+      const stored = await Storage.instance.store(key, coin);
 
-    console.log('stored', stored);
-
-    if (stored) {
-      this.setState({isFavorite: true});
+      if (stored) {
+        this.setState({isFavorite: true});
+      }
     }
   };
 
   removeFavorite = async () => {
-    try {
-      const key = `favorite-${this.state.coin.id}`;
-      console.log('key', key);
+    Alert.alert('Remote favorite', 'Are you sure?', [
+      {
+        text: 'cancel',
+        onPress: () => {},
+        style: 'cancel',
+      },
 
-      const remove = await Storage.instance.remove(key);
-      if (remove) {
-        this.setState({isFavorite: false});
-      }
-    } catch (err) {
-      console.log('remove favorites err', err);
-    }
+      {
+        text: 'remove',
+        onPress: async () => {
+          try {
+            const key = `favorite-${this.state.coin.id}`;
+            console.log('key', key);
+
+            const remove = await Storage.instance.remove(key);
+            if (remove) {
+              this.setState({isFavorite: false});
+            }
+          } catch (err) {
+            console.log('remove favorites err', err);
+          }
+        },
+        style: 'destructive',
+      },
+    ]);
   };
 
   getFavorite = async () => {

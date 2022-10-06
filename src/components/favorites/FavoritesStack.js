@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {FavoritesScreen} from './FavoritesScreen';
+
 import theme from '../../res/theme';
 
 const Stack = createStackNavigator();
