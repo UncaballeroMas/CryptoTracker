@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Pressable, Platform} from 'react-native';
-import Theme from '../../res/theme';
+import {View, Text, Image, Pressable} from 'react-native';
+
+import {Styles} from './styles';
 
 const CoinsItem = ({item, onPress}) => {
   getImgArrow = () => {
@@ -12,59 +13,19 @@ const CoinsItem = ({item, onPress}) => {
   };
 
   return (
-    <Pressable onPress={onPress} style={styles.textTitel}>
-      <View style={styles.row}>
-        <Text styles={styles.symbolText}>{item.symbol}</Text>
-        <Text style={styles.nameText}>{item.name}</Text>
-        <Text style={styles.priceText}>{`$${item.price_usd}`}</Text>
+    <Pressable onPress={onPress} style={Styles.textTitle}>
+      <View style={Styles.row}>
+        <Text styles={Styles.symbolText}>{item.symbol}</Text>
+        <Text style={Styles.nameText}>{item.name}</Text>
+        <Text style={Styles.priceText}>{`$${item.price_usd}`}</Text>
       </View>
 
-      <View style={styles.row}>
-        <Text style={styles.percentText}>{item.percent_change_1h}</Text>
-        <Image style={styles.imageIcom} source={getImgArrow()} />
+      <View style={Styles.row}>
+        <Text style={Styles.percentText}>{item.percent_change_1h}</Text>
+        <Image style={Styles.imageIcom} source={getImgArrow()} />
       </View>
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  textTitel: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 16,
-    borderBottomColor: Theme.inputPlaceholderText,
-    borderBottomWidth: 1,
-    marginLeft: Platform.OS == 'ios' ? 16 : 0,
-    paddingLeft: Platform.OS == 'ios' ? 0 : 16,
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  symbolText: {
-    color: Theme.white,
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginRight: 12,
-  },
-  nameText: {
-    color: Theme.white,
-    fontSize: 14,
-    marginRight: 16,
-  },
-  priceText: {
-    color: Theme.white,
-    fontSize: 14,
-  },
-  percentText: {
-    color: Theme.white,
-    fontSize: 12,
-    marginRight: 8,
-  },
-
-  imageIcom: {
-    width: 22,
-    height: 22,
-  },
-});
 
 export default CoinsItem;

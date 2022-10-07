@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {FavoritesScreen} from './FavoritesScreen';
 
-import theme from '../../res/theme';
+import Theme from '../../res/theme';
 
 const Stack = createStackNavigator();
 
@@ -11,10 +11,10 @@ export const FavoritesStack = () => {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: theme.headerBackground,
-          shadowOpacity: theme.GrayBackground,
+          backgroundColor: Theme.headerBackground,
+          shadowOpacity: Theme.GrayBackground,
         },
-        headerTintColor: theme.white,
+        headerTintColor: Theme.white,
       }}>
       <Stack.Screen name="Favorites" component={FavoritesScreen} />
     </Stack.Navigator>

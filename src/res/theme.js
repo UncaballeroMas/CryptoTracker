@@ -1,4 +1,4 @@
-const theme = {
+const Theme = {
   primaryPurple: '#6C0BA9',
   headerSalmon: '#d95030',
   backgroundLightBlue: '#007aff',
@@ -102,4 +102,4 @@ const theme = {
   namingGray: '#F0F0F0',
 };
 
-export default theme;
+export default Theme;
