@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {View, FlatList, StyleSheet, ActivityIndicator} from 'react-native';
-import Http from '../../libs/http';
-
-import CoinsSearch from './CoinsSearch';
-import Theme from '../../res/theme';
-
+import {View, FlatList, ActivityIndicator} from 'react-native';
 import CoinsItem from './CoinsItem';
+import CoinsSearch from './CoinsSearch';
+
+import {Styles} from './styles';
+import Http from '../../libs/http';
 
 class CoinsScreen extends Component {
   state = {
@@ -48,9 +47,9 @@ class CoinsScreen extends Component {
     const {coins, loading} = this.state;
 
     return (
-      <View style={styles.container}>
+      <View style={Styles.coinScreen}>
         <CoinsSearch onChange={this.handleSearch} />
-        {loading ? <ActivityIndicator style={styles.loader} /> : null}
+        {loading ? <ActivityIndicator style={Styles.loader} /> : null}
         <FlatList
           data={coins}
           renderItem={({item}) => (
@@ -61,34 +60,5 @@ class CoinsScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Theme.headerBackground,
-  },
-
-  titleText: {
-    color: Theme.white,
-    textAlign: 'center',
-  },
-
-  btn: {
-    padding: 8,
-    backgroundColor: 'blue',
-    borderRadius: 15,
-    margin: 15,
-  },
-
-  btnText: {
-    color: Theme.white,
-    textAlign: 'center',
-  },
-
-  loader: {
-    size: 'large',
-    color: Theme.white,
-  },
-});
 
 export default CoinsScreen;

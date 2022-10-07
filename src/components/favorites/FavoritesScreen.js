@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList} from 'react-native';
 import CoinsItem from '../coins/CoinsItem';
-import theme from '../../res/theme';
 import {FavoritesEmptyState} from './FavoritesEmptyState';
+
 import Storage from '../../libs/storage';
+import {Styles} from './styles';
 
 export class FavoritesScreen extends Component {
   state = {
@@ -44,7 +45,7 @@ export class FavoritesScreen extends Component {
   render() {
     const {favorites} = this.state;
     return (
-      <View style={styles.container}>
+      <View style={Styles.favScreen}>
         {favorites.length == 0 ? <FavoritesEmptyState /> : null}
         {favorites.length > 0 ? (
           <FlatList
@@ -58,10 +59,3 @@ export class FavoritesScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.headerBackground,
-    flex: 1,
-  },
-});
